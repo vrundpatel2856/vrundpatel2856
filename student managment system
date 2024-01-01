@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int TotalStudents,MAX_NAME_LENGTH=50;
+    printf("Enter the Total number of students: ");
+    scanf("%d", &TotalStudents);
+
+    char studentNames[TotalStudents][MAX_NAME_LENGTH];
+    int studentAges[TotalStudents];
+    float studentGPAs[TotalStudents];
+    int studentCount = 0,choice = 0;
+     while (choice != 3) {
+        printf("\nStudent Database System\n");
+        printf("1. Add Student\n");
+        printf("2. Display Students\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                if (studentCount < TotalStudents) {
+                    printf("Enter student name: ");
+                    scanf("%s", studentNames[studentCount]);
+
+                    printf("Enter student age: ");
+                    scanf("%d", &studentAges[studentCount]);
+
+                    printf("Enter student GPA: ");
+                    scanf("%f", &studentGPAs[studentCount]);
+
+                    printf("Student added successfully!\n");
+                    studentCount++;
+                } else {
+                    printf("Maximum number of students reached.\n");
+                }
+                break;
+            case 2:
+                printf("\nStudent Database:\n");
+                for (int i = 0; i < studentCount; ++i) {
+                    printf("Name: %s | Age: %d | GPA: %.2f\n", studentNames[i], studentAges[i], studentGPAs[i]);
+                }
+                break;
+            case 3:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
