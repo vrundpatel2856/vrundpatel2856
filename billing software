@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure to represent a product
+struct Product {
+    char name[50];
+    float price;
+};
+
+// Function to display the product list
+void displayProductList(struct Product products[], int numProducts) {
+    printf("\nProduct List:\n");
+    printf("%-20s%-10s\n", "Product Name", "Price");
+    for (int i = 0; i < numProducts; ++i) {
+        printf("%-20s%-10.2f\n", products[i].name, products[i].price);
+    }
+}
+
+// Function to calculate the total amount
+float calculateTotal(struct Product products[], int quantities[], int numProducts) {
+    float total = 0.0;
+    for (int i = 0; i < numProducts; ++i) {
+        total += products[i].price * quantities[i];
+    }
+    return total;
+}
+
+int main() {
+    // Define products
+    struct Product products[] = {
+        {"Product a", 10.99},
+        {"Product b", 20.49},
+        {"Product c", 5.75},
+        {"product d", 8.75},
+
+
+
+        // Add more products as needed
+    };
+
+    // Get the number of products
+    int numProducts = sizeof(products) / sizeof(products[0]);
+
+    // Display product list
+    displayProductList(products, numProducts);
+
+    // Get quantities for each product
+    int quantities[numProducts];
+    for (int i = 0; i < numProducts; ++i) {
+        printf("Enter quantity for %s: ", products[i].name);
+        scanf("%d", &quantities[i]);
+    }
+
+    // Calculate and display the total amount
+    float totalAmount = calculateTotal(products, quantities, numProducts);
+    printf("\nTotal Amount: $%.2f\n", totalAmount);
+
+    return 0;
+}
